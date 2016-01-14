@@ -5,7 +5,6 @@
 "use strict";
 
 var gulp = require('gulp'),
-    os = require('os'),
     connect = require('gulp-connect'),
     open = require('gulp-open'),
     browserify = require('browserify'),
@@ -41,14 +40,8 @@ gulp.task('connect', function () {
 });
 
 gulp.task('open', ['connect'], function () {
-
-  //var browser = os.platform() === 'linux' ? 'google-chrome' : (
-  //    os.platform() === 'darwin' ? 'google chrome' : (
-  //        os.platform() === 'win32' ? 'chrome' : 'firefox'));
-
   gulp.src('./dist/index.html')
       .pipe(open({uri: config.devBaseUrl + ':' + config.port + '/'}));
-      //.pipe(open({url: config.devBaseUrl + ':' + config.port + '/'}));
 });
 
 gulp.task('html', function () {
