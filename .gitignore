@@ -1,0 +1,13 @@
+.idea
+node_modules/
+bower_components/
+build.js
+build/
+cache/
+dist/
+app/
+debug.log
+icudt.dll
+nw.exe
+nw.pak
+node-webkit.app/
