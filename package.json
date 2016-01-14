@@ -2,13 +2,9 @@
   "name": "gdrv2",
   "version": "0.0.1",
   "description": "test project",
-  "main": "dist/index.html",
-  "single-instance": true,
+  "main": "src/index.html",
   "author": "pamdreyn@gmail.com",
   "license": "ISC",
-  "scripts": {
-    "start": "gulp"
-  },
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-connect": "^2.3.1",
@@ -30,5 +26,27 @@
     "react-router": "^1.0.3",
     "reactify": "^1.1.1",
     "vinyl-source-stream": "^1.1.0"
-  }
+  },
+  "window": {
+    "icon": "img/icon.png",
+    "fullscreen": false,
+    "visible": true,
+    "always-on-top": false,
+    "title": "App",
+    "show_in_taskbar": true,
+    "resizable": true,
+    "frame": false,
+    "toolbar": true,
+    "width": 300,
+    "height": 400,
+    "position": "center",
+    "min_width": 300,
+    "min_height": 400,
+    "max_width": 500,
+    "max_height": 400
+  },
+  "webkit": {
+    "page-cache": true
+  },
+  "js-flags": "--expose-gc"
 }
