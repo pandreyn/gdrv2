@@ -7,7 +7,7 @@ var About = React.createClass({
     return (
         <div>
           <h1>О программе</h1>
-          <p>Используемые компоненты
+          <p>Используемые компоненты </p>
             <ul>
               <li>React</li>
               <li>React Router</li>
@@ -17,7 +17,6 @@ var About = React.createClass({
               <li>Browserify</li>
               <li>Bootstrap</li>
             </ul>
-          </p>
         </div>
     );
   }

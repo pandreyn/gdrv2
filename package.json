@@ -2,7 +2,7 @@
   "name": "gdrv2",
   "version": "0.0.1",
   "description": "test project",
-  "main": "src/index.html",
+  "main": "index.html",
   "author": "pamdreyn@gmail.com",
   "license": "ISC",
   "devDependencies": {
@@ -12,11 +12,18 @@
     "gulp-util": "^3.0.7"
   },
   "dependencies": {
+    "babel": "^6.3.26",
+    "babel-preset-react": "^6.3.13",
     "bootstrap": "^3.3.6",
     "browserify": "^13.0.0",
+    "del": "^2.2.0",
     "flux": "^2.1.1",
+    "gulp": "^3.9.0",
+    "gulp-babel": "^6.1.1",
     "gulp-concat": "^2.6.0",
     "gulp-eslint": "^1.1.1",
+    "gulp-plumber": "^1.0.1",
+    "gulp-rename": "^1.2.2",
     "history": "^1.17.0",
     "jquery": "^2.2.0",
     "lodash": "^4.0.0",
@@ -25,28 +32,10 @@
     "react-dom": "^0.14.6",
     "react-router": "^1.0.3",
     "reactify": "^1.1.1",
+    "run-sequence": "^1.1.5",
+    "sequelize": "^3.17.3",
+    "sqlite3": "^3.1.1",
+    "vinyl-paths": "^2.1.0",
     "vinyl-source-stream": "^1.1.0"
-  },
-  "window": {
-    "icon": "img/icon.png",
-    "fullscreen": false,
-    "visible": true,
-    "always-on-top": false,
-    "title": "App",
-    "show_in_taskbar": true,
-    "resizable": true,
-    "frame": false,
-    "toolbar": true,
-    "width": 300,
-    "height": 400,
-    "position": "center",
-    "min_width": 300,
-    "min_height": 400,
-    "max_width": 500,
-    "max_height": 400
-  },
-  "webkit": {
-    "page-cache": true
-  },
-  "js-flags": "--expose-gc"
+  }
 }
