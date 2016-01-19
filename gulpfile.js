@@ -12,6 +12,7 @@ var plumber = require('gulp-plumber');
 var rename = require('gulp-rename');
 var del = require('del');
 var runSequence = require('run-sequence');
+var config = require('./config/paths');
 
 var onError = function (err) {
   notify.onError({
@@ -19,28 +20,6 @@ var onError = function (err) {
     message: "<%= error %>"
   })(err);
   this.emit('end');
-};
-
-var plumberOptions = {
-  errorHandler: onError
-};
-
-var config = {
-  port: 9005,
-  devBaseUrl: 'http://localhost',
-  paths: {
-    html: './src/*.html',
-    js: './src/**/*.js',
-    images: './src/images/*',
-    fonts: 'node_modules/bootstrap/fonts/*',
-    package: './src/package.json_nwjs',
-    css: [
-      'node_modules/bootstrap/dist/css/bootstrap.min.css',
-      'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
-    ],
-    dist: './dist',
-    mainJs: './src/main.js'
-  }
 };
 
 // Start a local development service
@@ -89,7 +68,12 @@ gulp.task('images', function () {
       .pipe(gulp.dest(config.paths.dist + '/images'))
       .pipe(connect.reload());
 
-  gulp.src('.src/favicon.ico')
+  //gulp.src('.src/favicon.ico')
+  //    .pipe(gulp.dest(config.paths.dist));
+});
+
+gulp.task('favicon', function () {
+  gulp.src(config.paths.favicon)
       .pipe(gulp.dest(config.paths.dist));
 });
 
@@ -118,9 +102,15 @@ gulp.task('watch', function () {
 
 gulp.task('default', function(callback) {
   runSequence('clean',
-      ['html', 'js', 'css', 'fonts', 'images', 'lint'],
+      ['html', 'js', 'css', 'fonts', 'images', 'favicon', 'lint'],
       'open',
       'watch',
+      callback);
+});
+
+gulp.task('build', function(callback) {
+  runSequence('clean',
+      ['html', 'js', 'css', 'fonts', 'images', 'favicon', 'lint'],
       callback);
 });
 
@@ -129,6 +119,6 @@ gulp.task('default', function(callback) {
 
 gulp.task('nwjs', function(callback) {
   runSequence('clean',
-      ['html', 'js', 'css', 'fonts', 'images', 'lint', 'package'],
+      ['html', 'js', 'css', 'fonts', 'images', 'favicon', 'lint', 'package'],
       callback);
 });

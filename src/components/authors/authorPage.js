@@ -17,9 +17,7 @@ var AuthorPage = React.createClass({
     var that = this;
 
     if (this.isMounted()) {
-      new Promise(function (resolve) {
-        resolve(AuthorApi.getAllAuthors());
-      }).then(function (authors) {
+      AuthorApi.getAllAuthors().then(function (authors) {
         that.setState({authors: authors});
       });
     }

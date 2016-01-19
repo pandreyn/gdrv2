@@ -1,49 +1,51 @@
 "use strict";
 
-//This file is mocking a web API by hitting hard coded data.
-var authors = require('./authorData').authors;
 var _ = require('lodash');
+var $ = require('jquery');
+var apiPath = 'api/author';
 
-//This would be performed on the server in a real app. Just stubbing in.
-var _generateId = function(author) {
-  return author.firstName.toLowerCase() + '-' + author.lastName.toLowerCase();
-};
-
-var _clone = function(item) {
+var _clone = function (item) {
   return JSON.parse(JSON.stringify(item)); //return cloned copy so that the item is passed by value instead of by reference
 };
 
 var AuthorApi = {
-  getAllAuthors: function() {
-    return _clone(authors);
+  getAllAuthors: function () {
+    return $.getJSON(apiPath, function (data) {
+      return data;
+    });
   },
 
-  getAuthorById: function(id) {
-    var author = _.find(authors, {id: id});
-    return _clone(author);
+  getAuthorById: function (id) {
+    return $.getJSON(apiPath, {id: id}, function (author) {
+      return author;
+    });
   },
 
-  saveAuthor: function(author) {
-    //pretend an ajax call to web api is made here
-    console.log('Pretend this just saved the author to the DB via AJAX call...');
-
+  saveAuthor: function (author) {
     if (author.id) {
-      var existingAuthorIndex = _.indexOf(authors, _.find(authors, {id: author.id}));
-      authors.splice(existingAuthorIndex, 1, author);
+      return $.ajax({
+        url: apiPath,
+        type: 'PUT',
+        data: {author: author}
+      });
     } else {
-      //Just simulating creation here.
-      //The server would generate ids for new authors in a real app.
-      //Cloning so copy returned is passed by value rather than by reference.
-      author.id = _generateId(author);
-      authors.push(author);
+      return $.ajax({
+        url: apiPath,
+        type: 'POST',
+        data: {author: author}
+      });
     }
-
-    return _clone(author);
   },
 
-  deleteAuthor: function(id) {
-    console.log('Pretend this just deleted the author from the DB via an AJAX call...');
-    _.remove(authors, { id: id});
+  deleteAuthor: function (id) {
+    return $.ajax({
+      url: apiPath,
+      type: 'DELETE',
+      data: {id: id}
+    });
+
+    //console.log('Pretend this just deleted the author from the DB via an AJAX call...');
+    //_.remove(authors, {id: id});
   }
 };
 
