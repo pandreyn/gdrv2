@@ -2,7 +2,7 @@
 
 var _ = require('lodash');
 var $ = require('jquery');
-var apiPath = 'api/author';
+var apiPath = '/api/author';
 
 var _clone = function (item) {
   return JSON.parse(JSON.stringify(item)); //return cloned copy so that the item is passed by value instead of by reference
@@ -22,19 +22,13 @@ var AuthorApi = {
   },
 
   saveAuthor: function (author) {
-    if (author.id) {
-      return $.ajax({
-        url: apiPath,
-        type: 'PUT',
-        data: {author: author}
-      });
-    } else {
-      return $.ajax({
-        url: apiPath,
-        type: 'POST',
-        data: {author: author}
-      });
-    }
+    var type = author.id ? 'PUT' : 'POST';
+
+    return $.ajax({
+      url: apiPath,
+      type: type,
+      data: author
+    });
   },
 
   deleteAuthor: function (id) {

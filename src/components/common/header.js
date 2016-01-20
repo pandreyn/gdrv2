@@ -1,24 +1,32 @@
 "use strict";
 
 var React = require('react');
-var ReactRouter = require('react-router');
-var Link = ReactRouter.Link;
+
+var Navbar = require('react-bootstrap').Navbar;
+var Nav = require('react-bootstrap').Nav;
+var NavItem = require('react-bootstrap').NavItem;
+
+var LinkContainer = require('react-router-bootstrap').LinkContainer;
 
 var Header = React.createClass({
   render: function(){
     return (
-        <nav className="navbar navbar-default">
-          <div className="container-fluid">
-            <Link to="/" className="navbar-brand" >
-              <span className="glyphicon glyphicon-flash" aria-hidden="true"></span>
-            </Link>
-            <ul className="nav navbar-nav">
-              <li><Link to="/">Главная</Link></li>
-              <li><Link to="authors">Authors</Link></li>
-              <li><Link to="about">О программе</Link></li>
-            </ul>
-          </div>
-        </nav>
+
+    <Navbar>
+      <Navbar.Header>
+        <Navbar.Brand>
+          <a href="#">React-Bootstrap</a>
+        </Navbar.Brand>
+        <Navbar.Toggle />
+      </Navbar.Header>
+      <Navbar.Collapse>
+        <Nav>
+          <LinkContainer to="/"><NavItem eventKey={1}>Главная</NavItem></LinkContainer>
+          <LinkContainer to="authors"><NavItem eventKey={2}>Authors</NavItem></LinkContainer>
+          <LinkContainer to="about"><NavItem eventKey={3}>О программе</NavItem></LinkContainer>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
     );
   }
 });

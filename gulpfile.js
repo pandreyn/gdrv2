@@ -96,7 +96,7 @@ gulp.task('fonts', function () {
 });
 
 gulp.task('watch', function () {
-  gulp.watch(config.paths.js, ['js', 'lint']);
+  gulp.watch(config.paths.js, ['js']);
   gulp.watch(config.paths.html, ['html']);
 });
 
@@ -110,7 +110,7 @@ gulp.task('default', function(callback) {
 
 gulp.task('build', function(callback) {
   runSequence('clean',
-      ['html', 'js', 'css', 'fonts', 'images', 'favicon', 'lint'],
+      ['html', 'js', 'css', 'fonts', 'images', 'favicon'],
       callback);
 });
 

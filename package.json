@@ -2,11 +2,13 @@
   "name": "gdrv2",
   "version": "0.0.1",
   "description": "test project",
-  "main": "index.html",
+  "node_main": "start.js",
+  "main": "http://localhost:3002",
   "author": "pamdreyn@gmail.com",
   "license": "ISC",
   "scripts": {
-    "start": "gulp build && node start.js"
+    "start": "gulp build && node start.js",
+    "nwjs": "gulp build && node start.js"
   },
   "devDependencies": {
     "gulp": "^3.9.0",
@@ -37,8 +39,10 @@
     "morgan": "^1.6.1",
     "promise": "^7.1.1",
     "react": "^0.14.6",
+    "react-bootstrap": "^0.28.2",
     "react-dom": "^0.14.6",
     "react-router": "^1.0.3",
+    "react-router-bootstrap": "^0.19.3",
     "reactify": "^1.1.1",
     "run-sequence": "^1.1.5",
     "sequelize": "^3.17.3",
@@ -46,7 +50,24 @@
     "sequelize-restful": "^0.4.3",
     "serve-favicon": "^2.3.0",
     "sqlite3": "^3.1.1",
+    "toastr": "^2.1.2",
     "vinyl-paths": "^2.1.0",
     "vinyl-source-stream": "^1.1.0"
+  },
+  "window": {
+    "title": "gdrv2",
+    "icon": "link.png",
+    "toolbar": true,
+    "frame": true,
+    "width": 800,
+    "height": 500,
+    "position": "center",
+    "min_width": 400,
+    "min_height": 200,
+    "max_width": 800,
+    "max_height": 600
+  },
+  "webkit": {
+    "plugin": true
   }
 }

@@ -6,14 +6,24 @@ var ReactRouter = require('react-router');
 var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
 
-var routes = (
-    <Route path="/" component={require('./components/app')}>
-      <IndexRoute component={require('./components/home/homePage')}/>
-      <Route path="authors" component={require('./components/authors/authorPage')}/>
-      <Route path="about" component={require('./components/about/aboutPage')}/>
-      <Route path="*" component={require('./components/notFoundPage')}/>
-    </Route>
+// components
 
+var app = require('./components/app');
+var homepage = require('./components/home/homePage');
+var authorPage = require('./components/authors/authorPage');
+var manageAuthorPage = require('./components/authors/manageAuthorPage');
+var aboutPage = require('./components/about/aboutPage');
+var notFoundPage = require('./components/notFoundPage');
+
+var routes = (
+    <Route path="/" component={app}>
+      <IndexRoute component={homepage}/>
+      <Route path="authors" component={authorPage}/>
+      <Route path="author" component={manageAuthorPage}/>
+      <Route path="author/:id" component={manageAuthorPage}/>
+      <Route path="about" component={aboutPage}/>
+      <Route path="*" component={notFoundPage}/>
+    </Route>
 );
 
 module.exports = routes;
