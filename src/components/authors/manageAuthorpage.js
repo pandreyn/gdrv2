@@ -11,7 +11,7 @@ var toastr = require('toastr');
 var ManageAuthorPage = React.createClass({
 
   mixins: [
-    Router.History,
+    ReactRouter.History,
     Lifecycle
   ],
 
@@ -79,6 +79,7 @@ var ManageAuthorPage = React.createClass({
       return;
     }
 
+
     AuthorApi
         .saveAuthor(this.state.author)
         .then(function () {
@@ -96,7 +97,8 @@ var ManageAuthorPage = React.createClass({
             author={this.state.author}
             onChange={this.setAuthorState}
             onSave={this.saveAuthor}
-            errors={this.state.errors}/>
+            errors={this.state.errors}
+            prevPage="author"/>
     );
   }
 });
