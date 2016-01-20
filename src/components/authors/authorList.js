@@ -17,11 +17,8 @@ var AuthorList = React.createClass({
 
   render: function () {
 
-    var that = this;
-
     var createAuthorRow = function (author) {
-      //var boundClick = that.props.delete;
-      var boundClick = that.onClick.bind(that, author);
+      var boundClick = this.onClick.bind(this, author);
       return (
           <tr key={author.id}>
             <td>
@@ -31,7 +28,7 @@ var AuthorList = React.createClass({
             <td><button className="btn btn-default" onClick={boundClick}>Delete</button></td>
           </tr>
       );
-    };
+    }.bind(this);
 
     return (
         <div>

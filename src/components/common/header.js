@@ -4,6 +4,12 @@ var React = require('react');
 var ReactRouter = require('react-router');
 var Link = ReactRouter.Link;
 
+var menus = [
+  {path: '/', name: 'Главная'},
+  {path: 'authors', name: 'Authors'},
+  {path: 'about', name: 'О программе'}
+];
+
 var Header = React.createClass({
 
   mixins: [
@@ -15,13 +21,10 @@ var Header = React.createClass({
   },
 
   isActiveClass: function (route) {
-    return route === this.context.location.pathname.replace('/', '') ? 'active' : '';
+    return route.replace('/', '') === this.context.location.pathname.replace('/', '') ? 'active' : '';
   },
 
   render: function () {
-
-    console.log('header this.context.location = ', this.context.location);
-
     return (
         <nav className="navbar navbar-default">
           <div className="container-fluid">
@@ -29,9 +32,14 @@ var Header = React.createClass({
               <span className="glyphicon glyphicon-flash" aria-hidden="true"/>
             </Link>
             <ul className="nav navbar-nav">
-              <li className={this.isActiveClass('')}><Link to="/">Главная</Link></li>
-              <li className={this.isActiveClass('authors')}><Link to="authors">Authors</Link></li>
-              <li className={this.isActiveClass('about')}><Link to="about">О программе</Link></li>
+
+              {menus.map(function(menu) {
+                return  <li key={menu.name}
+                           className={this.isActiveClass(menu.path)}>
+                          <Link to={menu.path}>{menu.name}</Link>
+                        </li>;
+              }.bind(this))}
+
             </ul>
           </div>
         </nav>

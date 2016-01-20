@@ -15,10 +15,9 @@ var AuthorPage = React.createClass({
   },
 
   getAuthors: function(){
-    var that = this;
     AuthorApi.getAllAuthors().then(function (authors) {
-      that.setState({authors: authors});
-    });
+      this.setState({authors: authors});
+    }.bind(this));
   },
 
   componentDidMount: function () {
@@ -29,8 +28,6 @@ var AuthorPage = React.createClass({
   },
 
   deleteAuthor: function (author) {
-    var that = this;
-
     if (!confirm('Delete ' + author.firstName + ' ' + author.lastName + '?')) {
       return;
     }
@@ -39,8 +36,8 @@ var AuthorPage = React.createClass({
         .deleteAuthor(author.id)
         .then(function () {
           toastr.success('Author deleted.');
-          that.getAuthors();
-        }, function (err) {
+          this.getAuthors();
+        }.bind(this), function (err) {
           toastr.error('Error deleting: ' + err);
         });
   },

@@ -33,15 +33,14 @@ var ManageAuthorPage = React.createClass({
   },
 
   componentWillMount: function () {
-    var that = this;
     var authorId = this.props.params.id;
 
     if (authorId) {
       AuthorApi
           .getAuthorById(authorId)
           .then(function (author) {
-            that.setState({author: author});
-          });
+            this.setState({author: author});
+          }.bind(this));
     }
   },
 
@@ -72,23 +71,22 @@ var ManageAuthorPage = React.createClass({
   },
 
   saveAuthor: function (event) {
-    var that = this;
+
     event.preventDefault();
 
     if (!this.authorFormIsValid()) {
       return;
     }
 
-
     AuthorApi
         .saveAuthor(this.state.author)
         .then(function () {
-          that.setState({dirty: false});
+          this.setState({dirty: false});
           toastr.success('Author saved.');
-          that.context.history.pushState(null, `/authors`);
-        }, function (err) {
+          this.context.history.pushState(null, `/authors`);
+        }.bind(this), function (err) {
           toastr.error('Error saving: ' + err);
-        });
+        }.bind(this));
   },
 
   cancelEdit: function(){
