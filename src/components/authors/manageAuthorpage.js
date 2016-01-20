@@ -91,6 +91,10 @@ var ManageAuthorPage = React.createClass({
         });
   },
 
+  cancelEdit: function(){
+    this.context.history.pushState(null, `/authors`);
+  },
+
   render: function () {
     return (
         <AuthorForm
@@ -98,7 +102,7 @@ var ManageAuthorPage = React.createClass({
             onChange={this.setAuthorState}
             onSave={this.saveAuthor}
             errors={this.state.errors}
-            prevPage="author"/>
+            onCancel={this.cancelEdit}/>
     );
   }
 });

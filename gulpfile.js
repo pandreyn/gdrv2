@@ -8,7 +8,6 @@ var reactify = require('reactify');
 var source = require('vinyl-source-stream');
 var concat = require('gulp-concat');
 var eslint = require('gulp-eslint');
-var plumber = require('gulp-plumber');
 var rename = require('gulp-rename');
 var del = require('del');
 var runSequence = require('run-sequence');

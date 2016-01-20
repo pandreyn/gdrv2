@@ -11,7 +11,7 @@ var AuthorForm = React.createClass({
     onSave: React.PropTypes.func.isRequired,
     onChange: React.PropTypes.func.isRequired,
     error: React.PropTypes.object,
-    prevPage: React.PropTypes.string.isRequired
+    onCancel: React.PropTypes.func.isRequired
   },
 
   render: function () {
@@ -36,7 +36,7 @@ var AuthorForm = React.createClass({
           <input type="submit" value="Save" className="btn btn-default"
                  onClick={this.props.onSave}/>
 
-          <Link className="pull-right btn btn-default" to={this.props.errors.prevPage}>Cancel</Link>
+          <button type="button" onClick={this.props.onCancel} className="pull-right btn btn-default">Cancel</button>
         </form>
     );
   }
