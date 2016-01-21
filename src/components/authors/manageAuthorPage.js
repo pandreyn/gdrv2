@@ -37,7 +37,7 @@ var ManageAuthorPage = React.createClass({
     var authorId = this.props.params.id;
 
     if (authorId) {
-      this.setState({author: AuthorStore.getAuthorById(id)});
+      this.setState({author: AuthorStore.getAuthorById(authorId)});
     }
   },
 

@@ -27,7 +27,7 @@ var AuthorStore = assign({}, EventEmitter.prototype, {
 
   getAuthorById: function(id){
     var authors = _authors.filter(function(author){
-      return author.id === id;
+      return author.id == id;
     });
     return authors && authors[0];
   }
