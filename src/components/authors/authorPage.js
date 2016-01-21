@@ -2,7 +2,8 @@
 
 var React = require('react');
 var Link = require('react-router').Link;
-var AuthorApi = require('../../api/authorApi');
+var AuthorActions = require('../../actions/authorActions');
+var AuthorStore = require('../../stores/authorStore');
 var AuthorList = require('./authorList');
 var toastr = require('toastr');
 
@@ -10,22 +11,22 @@ var AuthorPage = React.createClass({
 
   getInitialState: function () {
     return {
-      authors: []
+      authors: AuthorStore.getAllAuthors()
     };
   },
 
-  getAuthors: function(){
-    AuthorApi.getAllAuthors().then(function (authors) {
-      this.setState({authors: authors});
-    }.bind(this));
-  },
-
-  componentDidMount: function () {
-    if (this.isMounted()) {
-      this.getAuthors();
-    }
-    //this.setState({authors: AuthorApi.getAllAuthors()});
-  },
+  //getAuthors: function(){
+  //  AuthorApi.getAllAuthors().then(function (authors) {
+  //    this.setState({authors: authors});
+  //  }.bind(this));
+  //},
+  //
+  //componentDidMount: function () {
+  //  if (this.isMounted()) {
+  //    this.getAuthors();
+  //  }
+  //  //this.setState({authors: AuthorApi.getAllAuthors()});
+  //},
 
   deleteAuthor: function (author) {
     if (!confirm('Delete ' + author.firstName + ' ' + author.lastName + '?')) {

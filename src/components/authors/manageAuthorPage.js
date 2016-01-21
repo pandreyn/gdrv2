@@ -5,7 +5,8 @@ var ReactRouter = require('react-router');
 var Router = ReactRouter.Router;
 var Lifecycle = ReactRouter.Lifecycle;
 var AuthorForm = require('./authorForm');
-var AuthorApi = require('../../api/authorApi');
+var AuthorActions = require('../../actions/authorActions');
+var AuthorStore = require('../../stores/authorStore');
 var toastr = require('toastr');
 
 var ManageAuthorPage = React.createClass({
@@ -36,11 +37,7 @@ var ManageAuthorPage = React.createClass({
     var authorId = this.props.params.id;
 
     if (authorId) {
-      AuthorApi
-          .getAuthorById(authorId)
-          .then(function (author) {
-            this.setState({author: author});
-          }.bind(this));
+      this.setState({author: AuthorStore.getAuthorById(id)});
     }
   },
 
@@ -78,8 +75,8 @@ var ManageAuthorPage = React.createClass({
       return;
     }
 
-    AuthorApi
-        .saveAuthor(this.state.author)
+    AuthorActions
+        .createAuthor(this.state.author)
         .then(function () {
           this.setState({dirty: false});
           toastr.success('Author saved.');
@@ -89,7 +86,7 @@ var ManageAuthorPage = React.createClass({
         }.bind(this));
   },
 
-  cancelEdit: function(){
+  cancelEdit: function () {
     this.context.history.pushState(null, `/authors`);
   },
 
