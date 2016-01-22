@@ -15,6 +15,18 @@ var AuthorActions = {
             author: newAuthor
           });
         });
+  },
+
+  deleteAuthor: function(authorId){
+
+    return AuthorApi
+        .deleteAuthor(authorId)
+        .then(function () {
+          Dispatcher.dispatch({
+            actionType: ActionTypes.DELETE_AUTHOR,
+            authorId: authorId
+          });
+        });
   }
 };
 

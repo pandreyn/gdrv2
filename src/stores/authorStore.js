@@ -47,6 +47,13 @@ Dispatcher.register(function (action) {
       _authors.push(action.author);
       AuthorStore.emitChange();
       break;
+
+    case ActionTypes.DELETE_AUTHOR:
+      _authors = _authors.filter(function(author){
+        return author.id != action.authorId;
+      });
+      AuthorStore.emitChange();
+      break;
     default:
       // no op
   }

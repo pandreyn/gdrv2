@@ -15,17 +15,10 @@ var AuthorPage = React.createClass({
     };
   },
 
-  //getAuthors: function(){
-  //  AuthorApi.getAllAuthors().then(function (authors) {
-  //    this.setState({authors: authors});
-  //  }.bind(this));
-  //},
-  //
   //componentDidMount: function () {
   //  if (this.isMounted()) {
-  //    this.getAuthors();
+  //    this.setState({authors: AuthorStore.getAllAuthors()});
   //  }
-  //  //this.setState({authors: AuthorApi.getAllAuthors()});
   //},
 
   deleteAuthor: function (author) {
@@ -33,11 +26,11 @@ var AuthorPage = React.createClass({
       return;
     }
 
-    AuthorApi
+    AuthorActions
         .deleteAuthor(author.id)
         .then(function () {
           toastr.success('Author deleted.');
-          this.getAuthors();
+          this.setState({authors: AuthorStore.getAllAuthors()});
         }.bind(this), function (err) {
           toastr.error('Error deleting: ' + err);
         });
